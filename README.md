@@ -1,5 +1,4 @@
 # 💰 Personal Finance Tracker (PFT)
-**AASTU SwEg2102 Project | Group [Your Number]**
 
 A modular C++ console application that replaces traditional file-handling with a **MySQL Relational Database** to provide secure, efficient, and reliable financial management.
 
