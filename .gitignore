@@ -1,13 +1,32 @@
-# Compiled files
+# Compiled object files
 *.o
+
+# Executable output
+pft_app
 *.out
 *.exe
 
-# Build output
-pft_app
+# Build folders
+build/
 
-# Config secrets
+# MySQL / config secrets
 config.ini
 
-# macOS
+# Logs
+*.log
+
+# Temporary files
+*.tmp
+*.temp
+
+# Linux / macOS system files
 .DS_Store
+
+# VS Code
+.vscode/
+
+# CLion / JetBrains
+.idea/
+
+# Vim swap files
+*.swp
