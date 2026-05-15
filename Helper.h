@@ -1,18 +1,15 @@
 #ifndef HELPER_H
 #define HELPER_H
+
 #include <iostream>
-#include <string>
+#include <limits>
 
-namespace Helper {
-    inline void printHeader(const std::string& title) {
-        std::cout << "\n====================================\n";
-        std::cout << "  " << title << "\n";
-        std::cout << "====================================\n";
-    }
+using namespace std;
 
-    inline void clearScreen() {
-        std::cout << "\033[2J\033[1;1H"; 
-    }
+
+inline void clearInput() {
+    cin.clear();
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
 }
 
 #endif
