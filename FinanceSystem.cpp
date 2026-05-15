@@ -74,7 +74,7 @@ bool FinanceSystem::registerUser() {
         mysql_free_result(res); return false;
     }
     if(res) mysql_free_result(res);
-    cout << " Password: "; getline(cin, pass);
+    cout << " Password:  "; getline(cin, pass);
     return runQuery("INSERT INTO users(username,password_hash) VALUES('" + user + "','" + pass + "')");
 }
 
