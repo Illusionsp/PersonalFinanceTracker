@@ -1,126 +1,50 @@
-# 💰 Personal Finance Tracker (PFT)
+# 💰 Smart Personal Finance Tracker (C++/MySQL)
 
-A modular **C++ console application** that replaces traditional file handling with a **MySQL Relational Database** to provide secure, efficient, and reliable financial management.
-
----
-
-# 🏗️ Academic Framework (Units 1–3)
-
-This project demonstrates mastery of the **SwEg2102 curriculum** at Addis Ababa Science and Technology University.
-
-## 📘 Unit 1 — Modular Programming
-
-Functional decomposition using independent modules (`main`, `FinanceSystem`, `Helper`) for maintainability and code reusability.
-
-## 📘 Unit 2 — Data Structures & OOP
-
-Uses `struct` for heterogeneous data mapping and `class` encapsulation for secure system behavior and data abstraction.
-
-## 📘 Unit 3 — Persistence & File Management
-
-Implements dual-layer persistence using:
-
-- **MySQL** for relational data storage
-- **C++ fstream** for generating sequential text-based bank statements (`BankStatement.txt`)
+A high-performance financial management system designed for the project. It features real-time budget monitoring, transaction tracking, and automated budget threshold alerts.
 
 ---
 
-# 📂 Project Architecture
+# 🚀 Key Features
 
-```text
-PersonalFinanceTracker/
-│
-├── main.cpp
-├── Models.h
-├── FinanceSystem.h
-├── FinanceSystem.cpp
-├── Helper.h
-├── config.ini
-├── Makefile
-└── README.md
-```
+- 🔐 Secure Authentication: User registration and login system
+- 📂 Relational Tracking: Maps income and expenses to categories
+- 📊 Smart Budgeting: Real-time budget calculation with 75% and 100% alerts
+- 📈 Analytical Reporting: Spending summaries and balance analysis
+- ✅ Input Validation: Handles negative values and invalid input types
 
 ---
 
-# 🔧 Core Components
+# 🏗️ System Architecture (Modular Design)
 
-### `main.cpp`
+The project is divided into independent modules for clean Separation of Concerns.
 
-Controls menu navigation and application flow.
-
-### `Models.h`
-
-Defines `User` and `Transaction` structures.
-
-### `FinanceSystem.*`
-
-Handles:
-
-- MySQL connectivity
-- CRUD operations
-- Balance calculation
-- File export
-
-### `Helper.h`
-
-Contains input validation and utility functions.
-
-### `config.ini`
-
-Stores database credentials securely.
-
-### `Makefile`
-
-Automates compilation and links `libmysqlclient`.
+| Member | File | Responsibility |
+|---|---|---|
+| Member 1 | `FinanceSystem.h` | Defines class structures and encapsulation |
+| Member 2 | `FinanceSystem.cpp` | Business logic and MySQL queries |
+| Member 3 | `main.cpp` | User interface and menu routing |
+| Member 4 | `schema.sql` | Database schema and relationships |
+| Member 5 | `Helper.h` | Input validation and utility functions |
 
 ---
 
-# 📋 Key Features
+# 📊 Database Schema
 
-## 🔐 Secure Authentication
+The system uses a relational database model with the following tables:
 
-- User login system with SQL-based credential validation
-- User-specific financial data isolation
-
-## 💳 Transaction Management (CRUD)
-
-- Add, update, and delete transactions
-- Real-time MySQL synchronization
-- Formatted console table view for transaction history
-
-## 📊 Financial Reporting
-
-- Dynamic balance calculation
-- Export financial reports using:
-
-```cpp
-std::ofstream
-```
-
-- Generates readable `BankStatement.txt` files
+- **Users** → Stores user credentials
+- **Categories** → Links transactions to categories
+- **Income** → Stores income transactions
+- **Expenses** → Stores expense transactions
+- **Budget** → Stores spending limits per category
 
 ---
 
-# 🛠️ Technical Stack
+# 🛠️ Installation & Setup
 
-| Component     | Technology     |
-| ------------- | -------------- |
-| Language      | C++17          |
-| Database      | MySQL 8.0+     |
-| Library       | libmysqlclient |
-| File Handling | C++ `fstream`  |
-| Build Tool    | GNU Make       |
+## MySQL Server
 
+Ensure MySQL is running on:
 
-# 🎯 Learning Outcomes
-
-This project demonstrates practical understanding of:
-
-- Modular Programming
-- Object-Oriented Programming
-- MySQL Integration with C++
-- CRUD Operations
-- File Persistence using `fstream`
-- Build Automation with Makefiles
-
----
+```txt
+127.0.0.1

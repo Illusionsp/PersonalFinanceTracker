@@ -74,7 +74,7 @@ bool FinanceSystem::registerUser() {
         mysql_free_result(res); return false;
     }
     if(res) mysql_free_result(res);
-    cout << " Password: "; getline(cin, pass);
+    cout << " Password:  "; getline(cin, pass);
     return runQuery("INSERT INTO users(username,password_hash) VALUES('" + user + "','" + pass + "')");
 }
 
@@ -252,4 +252,62 @@ void FinanceSystem::deleteTransaction() {
     if(res) mysql_free_result(res);
     cout << "Enter ID: "; cin >> id;
     runQuery("DELETE FROM " + tbl + " WHERE " + col + "=" + to_string(id) + " AND user_id=" + to_string(currentUserID));
+}
+
+
+
+//  REPORTS 
+void FinanceSystem::calculateBalance() {
+    double inc = 0, exp = 0;
+    runQuery("SELECT SUM(amount) FROM income WHERE user_id=" + to_string(currentUserID));
+    MYSQL_RES* r1 = mysql_store_result(conn); MYSQL_ROW row1 = mysql_fetch_row(r1);
+    if (row1 && row1[0]) inc = atof(row1[0]); mysql_free_result(r1);
+    runQuery("SELECT SUM(amount) FROM expenses WHERE user_id=" + to_string(currentUserID));
+    MYSQL_RES* r2 = mysql_store_result(conn); MYSQL_ROW row2 = mysql_fetch_row(r2);
+    if (row2 && row2[0]) exp = atof(row2[0]); mysql_free_result(r2);
+    cout << "\nBalance: " << (inc - exp) << " ETB\n";
+}
+
+void FinanceSystem::categoryReport() {
+    runQuery("SELECT c.name, SUM(e.amount) FROM expenses e JOIN categories c ON e.category_id=c.category_id WHERE e.user_id=" + to_string(currentUserID) + " GROUP BY c.name");
+    MYSQL_RES* res = mysql_store_result(conn); MYSQL_ROW row;
+    cout << "\n--- Spending Breakdown ---\n";
+    while (res && (row = mysql_fetch_row(res))) cout << (row[0]?row[0]:"Uncategorized") << " => " << row[1] << " ETB\n";
+    if(res) mysql_free_result(res);
+}
+
+void FinanceSystem::setCategoryBudget() {
+    string catName, s, e; double l;
+    cout << "\nCategory Name: "; clearInput(); getline(cin, catName);
+
+    int catID = 0;
+    runQuery("SELECT category_id FROM categories WHERE name='" + catName + "' AND (user_id=" + to_string(currentUserID) + " OR user_id IS NULL)");
+    MYSQL_RES* res = mysql_store_result(conn); MYSQL_ROW row;
+    if (res && (row = mysql_fetch_row(res))) catID = atoi(row[0]);
+    else {
+        runQuery("INSERT INTO categories(name, type, user_id) VALUES('" + catName + "', 'Expense', " + to_string(currentUserID) + ")");
+        catID = mysql_insert_id(conn);
+    }
+    if(res) mysql_free_result(res);
+
+    while(true) {
+        cout << "Limit (ETB): "; 
+        if(cin >> l && l > 0) break;
+        cout << "[!] Budget limit must be positive.\n";
+        cin.clear(); cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    }
+    clearInput();
+    cout << "Start (YYYY-MM-DD): "; getline(cin, s);
+    cout << "End (YYYY-MM-DD): "; getline(cin, e);
+    runQuery("INSERT INTO budget(user_id,category_id,limit_amount,period_start,period_end) VALUES(" + to_string(currentUserID) + "," + to_string(catID) + "," + to_string(l) + ",'" + s + "','" + e + "')");
+    cout << "Budget set for " << catName << endl;
+}
+
+void FinanceSystem::monthlyReport() {
+    string m; clearInput();
+    cout << "\nMonth (YYYY-MM): "; getline(cin, m);
+    runQuery("SELECT * FROM expenses WHERE date LIKE '" + m + "%' AND user_id=" + to_string(currentUserID));
+    MYSQL_RES* res = mysql_store_result(conn); MYSQL_ROW row;
+    while (res && (row = mysql_fetch_row(res))) cout << "ID[" << row[0] << "] " << row[3] << " ETB" << endl;
+    if(res) mysql_free_result(res);
 }
