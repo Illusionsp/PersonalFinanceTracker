@@ -18,7 +18,8 @@ public:
 
     bool login(std::string username, std::string password);
     bool registerUser(std::string username, std::string password);
-    
+    void setCategoryBudget();
+    void monthlyReport();
 
     void addTransaction(double amount, std::string category, std::string desc, std::string type);
     void updateTransaction(int transaction_id, double new_amt, std::string new_cat, std::string new_desc, std::string new_type);
