@@ -1,7 +1,7 @@
 #ifndef MODELS_H
 #define MODELS_H
 #include <string>
-
+// Transaction and user structures
 struct Transaction {
     int id;
     double amount;
