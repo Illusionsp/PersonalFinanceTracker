@@ -25,7 +25,7 @@ int main() {
             bool loggedIn = true;
             while (loggedIn) {
                 cout << "\n========== MAIN MENU ==========\n";
-                cout << "1. Manage Transactions (Add/Update/Delete)\n";
+                cout << "1. Manage Transactions (Add/Update/Delete Transaction)\n";
                 cout << "2. View & Filter History\n"; 
                 cout << "3. Reports & Analytics\n";
                 cout << "4. Budget Management\n";
@@ -57,7 +57,7 @@ int main() {
                         bool sub = true;
                         while(sub) {
                             cout << "\n--- VIEW & FILTER ---\n";
-                            cout << "1. Full History\n2. Filter by Category\n3. Filter by Date\n4. Back\nChoice: ";
+                            cout << "1. Full History\n2. Filter data by Category\n3. Filter data by Date\n4. Back\nChoice: ";
                             int sChoice;
                             if (!(cin >> sChoice)) { clearInput(); continue; }
                             
