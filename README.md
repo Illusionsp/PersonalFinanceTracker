@@ -20,11 +20,11 @@ The project is divided into independent modules for clean Separation of Concerns
 
 | Member | File | Responsibility |
 |---|---|---|
-| Member 1 | `FinanceSystem.h` | Defines class structures and encapsulation |
-| Member 2 | `FinanceSystem.cpp` | Business logic and MySQL queries |
-| Member 3 | `main.cpp` | User interface and menu routing |
-| Member 4 | `schema.sql` | Database schema and relationships |
-| Member 5 | `Helper.h` | Input validation and utility functions |
+| Member 1 -Anael Mulugeta| `FinanceSystem.h` | Defines class structures and encapsulation |
+| Member 2,3 and 4- Bethelhem Sefiw, Aschalew Getahun and Daniel Alemu | `FinanceSystem.cpp` | Business logic and MySQL queries |
+| Member 5- Bontu Bekele| `main.cpp` | User interface and menu routing |
+| Member 6- Bethelehem Hailu | `Helper.h` | Input validation and utility functions |
+| Member 7- Dilayehu Dessalegn| `models.h` | User interface and menu routing |
 
 ---
 
